@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog\Admin\CategoryController;
 use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestTestController;
@@ -26,13 +27,13 @@ Route::group(['namespace' => '', 'prefix' => 'blog'], function () {
 
 //Админка
 $groupData = [
-    'namespace' =>'Blog\Admin',
-    'prefix'    =>'admin\blog',
+    'namespace' =>'',
+    'prefix'    =>'admin/blog',
 ];
 Route::group($groupData, function(){
    // BlogCategory
     $methods = ['index', 'edit', 'update', 'create', 'store',];
-    Route::resource('categories', 'CategoryController')
+    Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('blog.admin.categories');
 });
