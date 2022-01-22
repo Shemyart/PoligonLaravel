@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTabldeSeeder::class);
         $this->call(BlogCategorsTableSeeder::class);
-        factory(\App\Models\BlogPost::class, 100)->create();
+        \App\Models\BlogPost::factory(100)->create();
     }
+
+
 }
