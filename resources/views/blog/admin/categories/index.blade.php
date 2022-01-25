@@ -23,7 +23,7 @@
                             <tr>
                                 <td>{{$item -> id}}</td>
 
-                                <td> <a href=""{{ route('blog.admin.categories.edit', $item->id) }}>
+                                <td> <a href="{{ route("blog.admin.categories.edit", $item->id) }}">
                                         {{$item->title}}
                                     </a>
                                 </td>
