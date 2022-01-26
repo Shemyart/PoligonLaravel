@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog\Admin;
 use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategor;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
@@ -65,13 +66,18 @@ class CategoryController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, BlogCategoryRepository $categoryRepository)
     {
-        $item = BlogCategor::findOrFail($id);
+        /*$item = BlogCategor::findOrFail($id);
         $categoryList = BlogCategor::all();
-
+        */
+        $item = $categoryRepository->getEdit($id);
+        if (empty($item)){
+            abort(404);
+        }
+        $categoryList = $categoryRepository->getForComboBox();
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
@@ -84,6 +90,7 @@ class CategoryController extends BaseController
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
+        //Эти же праивла прописаны в BlogCategoryUpdateRequest
         /*$rules = [
             'title'         => 'required|min:5|max:200',
             'slug'          => 'max:200',
