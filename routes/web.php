@@ -25,7 +25,7 @@ Route::group(['namespace' => '', 'prefix' => 'blog'], function () {
 });
 
 
-//Админка
+//Админка Блога
 $groupData = [
     'namespace' =>'',
     'prefix'    =>'admin/blog',
@@ -36,6 +36,10 @@ Route::group($groupData, function(){
     Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('blog.admin.categories');
+    //BlogPost
+    Route::resource('posts', PostController::class)
+        ->except(['show'])
+        ->names('blog.admin.posts');
 });
 
 //Route::resource('rest', RestTestController::class)->names('restTest');
