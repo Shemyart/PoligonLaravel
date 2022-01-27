@@ -43,19 +43,20 @@
                                 @foreach($categoryList as $categoryOption)
                                     <option value="{{$categoryOption->id}}"
                                             @if($categoryOption->id == $item->parent_id) selected @endif>
-                                        {{$categoryOption->id}}.{{$categoryOption->title}}
+{{--{{$categoryOption->id}}.{{$categoryOption->title}}--}}
+                                        {{ $categoryOption->id_title }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="description">Описание</label>
-                            <textarea name="description"
-                                      id="description"
-                                      class="form-control"
-                                      rows="3">
-                                {{old('description',$item->description)}}
-                            </textarea>
+                                <textarea   name="description"
+                                            id="description"
+                                            class="form-control"
+                                            rows="3">
+                                            {{old('description',$item->description)}}
+                                </textarea>
                         </div>
                     </div>
                 </div>
