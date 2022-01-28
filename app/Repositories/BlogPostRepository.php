@@ -39,5 +39,41 @@ class BlogPostRepository extends CoreRepository
                         ->paginate(25);
         return $result;
     }
+    /**
+     * Получить модель для редактирования в админке
+     *
+     * @param int $id
+     *
+     * @return Model
+     */
+    public function getEdit($id)
+    {
+        return $this->startConditions()->find($id);
+    }
+    public function getForComboBox()
+    {
+        $columns = implode(', ', [
+            'id',
+            'CONCAT (id, ". ", title) as id_title',
+        ]);
+        // $results[] = $this->startConditions()->all();
+        /* $results[] = $this
+             ->startConditions()
+             ->select('blog_categories.*', \DB::raw('CONCAT(id, ". ", title) AS id_title'))
+             ->toBase()
+             ->get();*/
+        $result = $this
+            ->startConditions()
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
+
+        return $result;
+
+
+    }
+
+
+
 
 }

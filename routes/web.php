@@ -21,7 +21,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['namespace' => '', 'prefix' => 'blog'], function () {
-    Route::resource('posts', PostController::class)->names('blog.posts');
+    Route::resource('posts', \App\Http\Controllers\Blog\Admin\PostController::class)->names('blog.posts');
 });
 
 
@@ -37,7 +37,7 @@ Route::group($groupData, function(){
         ->only($methods)
         ->names('blog.admin.categories');
     //BlogPost
-    Route::resource('posts', PostController::class)
+    Route::resource('posts', \App\Http\Controllers\Blog\Admin\PostController::class)
         ->except(['show'])
         ->names('blog.admin.posts');
 });

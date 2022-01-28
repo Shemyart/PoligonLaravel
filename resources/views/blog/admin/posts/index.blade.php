@@ -23,7 +23,7 @@
                             <tbody>
                             @foreach($paginator as $post)
 
-                                @php /** @var \App\Models\BlogCategor $post */ @endphp
+                                @php /** @var /App/Models/BlogPost $item */ @endphp
 
                                 <tr @if(!$post -> is_published) style="background-color: #ccc;" @endif>
                                     <td>{{$post -> id}}</td>
@@ -36,7 +36,9 @@
                                     </td>
 
                                     <td>
-                                        {{ $post->published_at ? \Carbon\Carbon::parse($post->published_at)->format('d.M H:i'): '' }}
+
+                                        {{ $post->published_at ? Carbon\Carbon::parse($post->published_at)->format('d.M H:i'): '' }}
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -46,6 +48,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             @if($paginator->total() > $paginator->count())
                 <br>
                 <div class="row justify-content-center">
@@ -59,5 +62,4 @@
                 </div>
             @endif
         </div>
-    </div>
 @endsection
