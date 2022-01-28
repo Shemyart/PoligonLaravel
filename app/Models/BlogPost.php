@@ -10,4 +10,25 @@ class BlogPost extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    /**
+     * Категория статьи.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        //Статья принадлежит категории
+        return $this->belongsTo(BlogCategor::class);
+    }
+
+    /**
+     * Автор статьи.
+     *
+     *  @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        //Статья принадлежит пользователю
+        return $this->belongsTo(User::class);
+    }
 }
