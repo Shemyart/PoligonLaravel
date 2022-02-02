@@ -42,7 +42,7 @@ class BlogCategoryObserver
     {
         $this->setSlug($blogCategory);
     }
-    
+
 
     /**
      * Handle the BlogCategor "deleted" event.
