@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Blog\Admin\CategoryController;
 use App\Http\Controllers\Blog\PostController;
+
+use App\Http\Controllers\DiggingDeeperController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestTestController;
 /*
@@ -19,6 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*
+Route::group(['prefix' => 'digging_deeper',], function(){
+    Route::get('collections', DiggingDeeperController::class)->name('digging_deeper.collections');
+});
+*/
 
 Route::group(['namespace' => '', 'prefix' => 'blog'], function () {
     Route::resource('posts', \App\Http\Controllers\Blog\Admin\PostController::class)->names('blog.posts');
