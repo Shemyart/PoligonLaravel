@@ -28,7 +28,7 @@ class CategoryController extends BaseController
     {
 
         //$paginator = BlogCategor::paginate(5);
-        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(25);
 
         return view('blog.admin.categories.index', compact('paginator'));
     }
